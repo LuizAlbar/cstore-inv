@@ -1,4 +1,5 @@
-from .store import BaseStore
-from.phone_number import PhoneNumberBase
+from .store import BaseStore, CreateStore, UpdateStore
+from.phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber
 
-__all__ = ['BaseStore', 'PhoneNumberBase']
+__all__ = ['BaseStore', 'CreateStore', 'UpdateStore',
+           'BasePhoneNumber', 'CreatePhoneNumber', 'UpdatePhoneNumber']
