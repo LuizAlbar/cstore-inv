@@ -48,6 +48,6 @@ class DeletePhoneNumber(BasePhoneNumber):
 class GetDeletedPhoneNumber(BaseModel):
 
     message : str
-    data =  DeletePhoneNumber
+    data : DeletePhoneNumber
 
     

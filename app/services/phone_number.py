@@ -17,6 +17,12 @@ class PhoneNumberService:
         return ResponseHandler.create_success(db_phone_number.number, db_phone_number.id, db_phone_number)
     
     @staticmethod
+    def read_phone_number(db: Session, phone_number_id: int):
+
+        db_phone_number = db.query(PhoneNumber).filter(PhoneNumber.id == phone_number_id).first()
+        return ResponseHandler.get_single_success(db_phone_number.number, db_phone_number.id, db_phone_number)
+    
+    @staticmethod
     def delete_phone_number(db: Session, phone_number_id : int):
 
         db_phone_number = db.query(PhoneNumber).filter(PhoneNumber.id == phone_number_id).first()

@@ -17,6 +17,12 @@ class StoreService:
         return ResponseHandler.create_success(db_store.name, db_store.id, db_store)
     
     @staticmethod
+    def read_store(db: Session, store_id: int):
+
+        db_store = db.query(Store).filter(Store.id == store_id).first()
+        return ResponseHandler.get_single_success(db_store.name, db_store.id, db_store)
+
+    @staticmethod
     def delete_store(db: Session, store_id: int):
         
         db_store = db.query(Store).filter(Store.id == store_id).first()
