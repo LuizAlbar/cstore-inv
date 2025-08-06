@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 from typing import TYPE_CHECKING
 from app.database import Base
@@ -15,7 +15,7 @@ class PhoneNumber(Base):
     cc =  Column(Integer, nullable= False)
     #Area Code
     ac = Column(Integer, nullable= False)
-    number = Column(Integer)
+    number = Column(Integer, nullable= False)
 
     store_id = Column(Integer, ForeignKey('stores.id', ondelete="CASCADE"), nullable= False)
 

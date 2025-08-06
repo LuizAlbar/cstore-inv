@@ -51,14 +51,5 @@ class GetDeletedStore(BaseModel):
     message : str
     data : DeleteStore
 
-# Others operations beyond CRUD
-
-class AssignPhoneNumber:
-
-    store_id : int
-    phone_id : int
-
-    class Config(BaseConfig):
-        pass
 
 

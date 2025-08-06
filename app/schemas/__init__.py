@@ -1,5 +1,5 @@
 from .store import BaseStore, CreateStore, UpdateStore, ReadStore
-from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber
+from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber
 
 __all__ = ['BaseStore', 'CreateStore', 'UpdateStore', 'ReadStore',
-           'BasePhoneNumber', 'CreatePhoneNumber', 'UpdatePhoneNumber']
+           'BasePhoneNumber', 'CreatePhoneNumber', 'UpdatePhoneNumber', 'ReadPhoneNumber']

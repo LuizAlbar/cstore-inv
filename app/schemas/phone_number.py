@@ -1,43 +1,46 @@
 from pydantic import BaseModel
 from typing import List
 
-class BaseConfig:
-    from_attributes = True
-
 class BasePhoneNumber(BaseModel):
 
     id : int
     cc : int
     ac : int
     number : int
+    store_id : int
 
-    class Config(BaseConfig):
-        pass
+    model_config = {
+        "from_attributes": True
+    }
 
 class CreatePhoneNumber(BaseModel):
 
     cc : int
     ac : int
     number : int
+    store_id : int
 
-    class Config(BaseConfig):
-        pass
+    model_config = {
+        "from_attributes": True
+    }
 
 class ReadPhoneNumber(BaseModel):
 
     message : str
     data : BasePhoneNumber
 
-    class Config(BaseConfig):
-        pass
+    model_config = {
+        "from_attributes": True
+    }
 
 class ReadAllPhoneNumber(BaseModel):
 
     message : str
     data : List[BasePhoneNumber] = []
 
-    class Config(BaseConfig):
-        pass
+    model_config = {
+        "from_attributes": True
+    }
 
 class UpdatePhoneNumber(CreatePhoneNumber):
     pass

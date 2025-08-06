@@ -3,7 +3,6 @@ from app.models import Store
 from app.schemas import CreateStore, UpdateStore
 from app.utils import ResponseHandler
 
-#Only create and delete functions for the first test step
 class StoreService:
 
     @staticmethod
@@ -18,9 +17,21 @@ class StoreService:
     
     @staticmethod
     def read_store(db: Session, store_id: int):
-
         db_store = db.query(Store).filter(Store.id == store_id).first()
+
+        if not db_store:
+            return ResponseHandler.not_found_error('Store', store_id)
+        
         return ResponseHandler.get_single_success(db_store.name, db_store.id, db_store)
+    
+    @staticmethod
+    def read_all_stores(db: Session):
+        
+        db_stores = db.query(Store).all()
+        if not db_stores:
+            return ResponseHandler.db_not_populated_error('Store')
+        
+        
 
     @staticmethod
     def delete_store(db: Session, store_id: int):

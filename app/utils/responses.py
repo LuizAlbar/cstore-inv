@@ -11,9 +11,15 @@ class ResponseHandler:
         return ResponseHandler.success(message, data)
 
     @staticmethod
-    def create_success(name, id, data):
+    def create_success(name, id, data, response_schema=None):
         message = f"{name} with id {id} created successfully"
-        return ResponseHandler.success(message, data)
+        response = {"message": message, "data": data}
+    
+        if response_schema:
+            return response_schema(**response)  
+    
+        return response
+
 
     @staticmethod
     def update_success(name, id, data):
@@ -28,6 +34,11 @@ class ResponseHandler:
     @staticmethod
     def not_found_error(name="", id=None):
         message = f"{name} With Id {id} Not Found!"
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=message)
+    
+    @staticmethod
+    def db_not_populated_error(name = ""):
+        message = f"{name} table is empty"
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=message)
 
     @staticmethod
