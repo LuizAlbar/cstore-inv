@@ -9,6 +9,11 @@ class ResponseHandler:
     def get_single_success(name, id, data):
         message = f"Details for {name} with id {id}"
         return ResponseHandler.success(message, data)
+    
+    @staticmethod
+    def get_all_success(object, data):
+        message = f"Detais for all {object}s"
+        return ResponseHandler.success(message, data)
 
     @staticmethod
     def create_success(name, id, data, response_schema=None):
@@ -19,7 +24,6 @@ class ResponseHandler:
             return response_schema(**response)  
     
         return response
-
 
     @staticmethod
     def update_success(name, id, data):

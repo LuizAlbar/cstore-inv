@@ -48,7 +48,7 @@ class UpdatePhoneNumber(CreatePhoneNumber):
 class DeletePhoneNumber(BasePhoneNumber):
     pass
 
-class GetDeletedPhoneNumber(BaseModel):
+class ReadDeletedPhoneNumber(BaseModel):
 
     message : str
     data : DeletePhoneNumber

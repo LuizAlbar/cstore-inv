@@ -1,5 +1,5 @@
-from .store import BaseStore, CreateStore, UpdateStore, ReadStore
-from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber
+from .store import BaseStore, CreateStore, UpdateStore, ReadStore, ReadAllStores, ReadDeletedStore
+from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber, ReadAllPhoneNumber, ReadDeletedPhoneNumber
 
-__all__ = ['BaseStore', 'CreateStore', 'UpdateStore', 'ReadStore',
-           'BasePhoneNumber', 'CreatePhoneNumber', 'UpdatePhoneNumber', 'ReadPhoneNumber']
+__all__ = ['BaseStore', 'CreateStore', 'UpdateStore', 'ReadStore', 'ReadAllStores', 'ReadDeletedStore'
+           'BasePhoneNumber', 'CreatePhoneNumber', 'UpdatePhoneNumber', 'ReadPhoneNumber', 'ReadAllPhoneNumber', 'ReadDeletedPhoneNumber']

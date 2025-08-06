@@ -15,6 +15,6 @@ class Store(Base):
     cnpj = Column(String(14), unique= True, nullable= False)
     email = Column(String(100), unique= True, nullable= False)
 
-    phone_numbers = relationship('PhoneNumber', back_populates= 'store')
+    phone_numbers = relationship('PhoneNumber', back_populates= 'store', cascade= 'all, delete-orphan', passive_deletes= True)
     
     

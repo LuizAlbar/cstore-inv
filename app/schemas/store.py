@@ -33,7 +33,7 @@ class ReadStore(BaseModel):
     class Config(BaseConfig):
         pass
 
-class ReadAllStores(BaseConfig):
+class ReadAllStores(BaseModel):
     message: str
     data : List[BaseStore] = []
 
@@ -46,7 +46,7 @@ class UpdateStore(CreateStore):
 class DeleteStore(BaseStore):
     pass
 
-class GetDeletedStore(BaseModel):
+class ReadDeletedStore(BaseModel):
 
     message : str
     data : DeleteStore
