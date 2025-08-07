@@ -5,6 +5,7 @@ from rich.console import Console
 from sqlalchemy.orm import Session
 from app.database import Base, engine
 from app.models import Store, PhoneNumber
+from app import models
 
 cli = typer.Typer()
 
@@ -43,6 +44,12 @@ def phonelist():
 
     Console().print(table)
 
+@cli.command()
+def resetdb():
+    Base.metadata.drop_all(bind=engine)
+    print('Database dropped successfully')
+    Base.metadata.create_all(bind = engine)
+    print('Database created successfully')
 
 
 

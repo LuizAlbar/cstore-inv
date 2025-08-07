@@ -10,7 +10,7 @@ class Crud(ABC):
 
     @classmethod
     def create(cls, db: Session, create_schema):
-        obj = cls.model(**create_schema.model_dump())
+        obj = cls.model(**create_schema.model_dump(mode = 'python'))
         db.add(obj)
         db.commit()
         db.refresh(obj)

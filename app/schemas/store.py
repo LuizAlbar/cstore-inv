@@ -1,5 +1,5 @@
-from pydantic import BaseModel, EmailStr
-from typing import List
+from pydantic import BaseModel, EmailStr, Field
+from typing import List, Annotated
 from .phone_number import BasePhoneNumber
 
 class BaseConfig:
@@ -8,7 +8,7 @@ class BaseConfig:
 class BaseStore(BaseModel):
 
     id : int
-    name : str
+    name: Annotated[str, Field(..., min_length=3, strict=True)]
     cnpj : str
     email : EmailStr
     phone_numbers : List[BasePhoneNumber] = []
@@ -18,7 +18,7 @@ class BaseStore(BaseModel):
 
 class CreateStore(BaseModel):
 
-    name : str
+    name: Annotated[str, Field(..., min_length=3, strict=True)]
     cnpj : str
     email : EmailStr
 
