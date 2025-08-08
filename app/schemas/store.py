@@ -9,8 +9,8 @@ class BaseStore(BaseModel):
 
     id : int
     name: Annotated[str, Field(..., min_length=3, strict=True)]
-    cnpj : str
-    email : EmailStr
+    cnpj : Annotated[str, Field(..., max_length=14, strict=True)]
+    email : Annotated[EmailStr, Field(..., max_length=100, strict=True)]
     phone_numbers : List[BasePhoneNumber] = []
 
     class Config(BaseConfig):
@@ -19,8 +19,8 @@ class BaseStore(BaseModel):
 class CreateStore(BaseModel):
 
     name: Annotated[str, Field(..., min_length=3, strict=True)]
-    cnpj : str
-    email : EmailStr
+    cnpj : Annotated[str, Field(..., max_length=14, strict=True)]
+    email : Annotated[EmailStr, Field(..., max_length=100, strict=True)]
 
     class Config(BaseConfig):
         pass

@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session, selectinload
+from sqlalchemy.exc import IntegrityError
 from abc import ABC
 from app.utils import ResponseHandler
 
@@ -11,15 +12,25 @@ class Crud(ABC):
     @classmethod
     def create(cls, db: Session, create_schema):
         obj = cls.model(**create_schema.model_dump(mode = 'python'))
-        db.add(obj)
-        db.commit()
-        db.refresh(obj)
-        
-        return ResponseHandler.create_success(
+
+        try:
+
+            db.add(obj)
+            db.commit()
+            db.refresh(obj)
+
+            return ResponseHandler.create_success(
             getattr(obj, cls.main_field, ""), 
             obj.id,
             obj
         )
+        
+        except IntegrityError:
+            db.rollback()
+            return ResponseHandler.value_already_exists_on_db(cls.model, obj, db)
+
+
+        
 
     @classmethod
     def read(cls, db: Session, id: int):
@@ -50,13 +61,18 @@ class Crud(ABC):
         if not obj:
             return ResponseHandler.not_found_error(cls.table_name, id)
         
-        for key, value in update_schema.model_dump().items():
-            setattr(obj, key, value)
+        try:
+            for key, value in update_schema.model_dump().items():
+                setattr(obj, key, value)
 
-        db.commit()
-        db.refresh(obj)
+            db.commit()
+            db.refresh(obj)
 
-        return ResponseHandler.update_success(getattr(obj, cls.main_field, ""), obj.id, obj)
+            return ResponseHandler.update_success(getattr(obj, cls.main_field, ""), obj.id, obj)
+
+        except IntegrityError:
+            db.rollback()
+            return ResponseHandler.value_already_exists_on_db(cls.model, obj, db, exclude_id= id)
 
     @classmethod
     def delete(cls, db: Session, id: int):

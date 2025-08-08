@@ -1,12 +1,12 @@
-from pydantic import BaseModel
-from typing import List
+from pydantic import BaseModel, Field
+from typing import List, Annotated
 
 class BasePhoneNumber(BaseModel):
 
     id : int
-    cc : int
-    ac : int
-    number : int
+    cc : Annotated[int, Field(..., ge= 1, le= 99999, strict= True)]
+    ac : Annotated[int, Field(..., ge= 1, le= 99999, strict= True)]
+    number : Annotated[int, Field(..., ge= 1, le= 999999999999, strict= True)]
     store_id : int
 
     model_config = {
@@ -15,9 +15,9 @@ class BasePhoneNumber(BaseModel):
 
 class CreatePhoneNumber(BaseModel):
 
-    cc : int
-    ac : int
-    number : int
+    cc : Annotated[int, Field(..., ge= 1, le= 99999, strict= True)]
+    ac : Annotated[int, Field(..., ge= 1, le= 99999, strict= True)]
+    number : Annotated[int, Field(..., ge= 1, le= 999999999999, strict= True)]
     store_id : int
 
     model_config = {

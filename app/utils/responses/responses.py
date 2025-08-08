@@ -1,4 +1,5 @@
 from fastapi import HTTPException, status
+from sqlalchemy.inspection import inspect
 
 class ResponseHandler:
     @staticmethod
@@ -44,6 +45,39 @@ class ResponseHandler:
     def db_not_populated_error(name = ""):
         message = f"{name} table is empty"
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=message)
+    
+    @staticmethod
+    def value_already_exists_on_db(model, obj, db, exclude_id: int = None):
+
+        mapper = inspect(model)
+        unique_values = [
+        c.name for c in mapper.columns
+        if c.unique and not c.primary_key
+    ]
+        duplications = {}
+
+        for value in unique_values:
+            data = getattr(obj, value)
+            if data is None:
+                continue
+
+            filter_query = db.query(model).filter(getattr(model, value) == data)
+
+            if exclude_id:
+ 
+                pk = mapper.primary_key[0].name
+                filter_query = filter_query.filter(getattr(model, pk) != exclude_id)
+
+            if filter_query.first():
+                duplications[value] = f"{data} already exists"
+
+        if duplications:
+            raise HTTPException(status_code= status.HTTP_409_CONFLICT, detail= duplications)
+        
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Database integrity error, but no unique constraint violation found."
+            )
 
     @staticmethod
     def invalid_token(name=""):
