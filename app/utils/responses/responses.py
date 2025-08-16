@@ -67,7 +67,7 @@ class ResponseHandler:
  
                 pk = mapper.primary_key[0].name
                 filter_query = filter_query.filter(getattr(model, pk) != exclude_id)
-
+                
             if filter_query.first():
                 duplications[value] = f"{data} already exists"
 

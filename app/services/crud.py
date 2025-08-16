@@ -72,7 +72,7 @@ class Crud(ABC):
 
         except IntegrityError:
             db.rollback()
-            return ResponseHandler.value_already_exists_on_db(cls.model, obj, db, exclude_id= id)
+            return ResponseHandler.value_already_exists_on_db(cls.model, update_schema, db, exclude_id= id)
 
     @classmethod
     def delete(cls, db: Session, id: int):
