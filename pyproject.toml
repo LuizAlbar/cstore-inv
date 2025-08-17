@@ -16,6 +16,7 @@ dependencies = [
     "typer-cli>=0.16.0",
     "uvicorn>=0.35.0",
     "alembic>=1.16.4",
+    "dynaconf>=3.2.11",
 ]
 
 [project.scripts]
@@ -24,3 +25,8 @@ cstore = "app.cli:cli"
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["app", "alembic"]
+
+

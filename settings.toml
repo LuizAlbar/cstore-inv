@@ -1,0 +1,5 @@
+[development]
+dynaconf_merge = true
+
+[development.db]
+uri = "postgresql+psycopg2://postgres:postgres@localhost:5432/cstore"
