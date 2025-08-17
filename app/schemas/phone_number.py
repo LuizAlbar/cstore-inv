@@ -1,5 +1,9 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Annotated
+
+class BaseConfig:
+
+    config = ConfigDict(from_attributes= True)
 
 class BasePhoneNumber(BaseModel):
 
@@ -9,9 +13,8 @@ class BasePhoneNumber(BaseModel):
     number : Annotated[int, Field(..., ge= 1, le= 999999999999, strict= True)]
     store_id : int
 
-    model_config = {
-        "from_attributes": True
-    }
+    class Config(BaseConfig):
+        pass
 
 class CreatePhoneNumber(BaseModel):
 
@@ -20,27 +23,24 @@ class CreatePhoneNumber(BaseModel):
     number : Annotated[int, Field(..., ge= 1, le= 999999999999, strict= True)]
     store_id : int
 
-    model_config = {
-        "from_attributes": True
-    }
+    class Config(BaseConfig):
+        pass
 
 class ReadPhoneNumber(BaseModel):
 
     message : str
     data : BasePhoneNumber
 
-    model_config = {
-        "from_attributes": True
-    }
+    class Config(BaseConfig):
+        pass
 
 class ReadAllPhoneNumber(BaseModel):
 
     message : str
     data : List[BasePhoneNumber] = []
 
-    model_config = {
-        "from_attributes": True
-    }
+    class Config(BaseConfig):
+        pass
 
 class UpdatePhoneNumber(CreatePhoneNumber):
     pass

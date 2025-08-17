@@ -1,9 +1,10 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import List, Annotated
 from .phone_number import BasePhoneNumber
 
 class BaseConfig:
-    from_attributes = True
+    
+    config = ConfigDict(from_attributes = True)
     
 class BaseStore(BaseModel):
 

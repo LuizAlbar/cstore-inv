@@ -10,7 +10,7 @@ class Address(Base):
 
     __tablename__ = "addresses"
 
-    id = Column(Integer, primary_key= True, unique = True, nullable= False, auto_increment = True)
+    id = Column(Integer, primary_key= True, unique = True, nullable= False, autoincrement = True)
     state = Column(String(40))
     city = Column(String(40))
     neighbourhood = Column(String(60))
@@ -26,7 +26,7 @@ class Address(Base):
 
     owner = None
 
-    owner_name = associationproxy("owner", "name")
+
 
 
 

@@ -19,7 +19,7 @@ class Store(Base):
 
     adresses = relationship('Address', 
                             primaryjoin= lambda: (foreign(Address.id) == remote(Store.id) & (Address.owner_type == "Store")),
-                            back_populates= "store",
+                            backref= "owner",
                             cascade= 'all, delete-orphan',
                             passive_deletes= True)
     
