@@ -1,10 +1,10 @@
 from sqlalchemy import Column, String, Integer
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, foreign, remote
 from typing import List, TYPE_CHECKING
 from app.database import Base
 
 if TYPE_CHECKING:
-    from app.models import PhoneNumber
+    from app.models import PhoneNumber, Address
 
 class Store(Base):
     
@@ -17,6 +17,12 @@ class Store(Base):
 
     phone_numbers = relationship('PhoneNumber', back_populates= 'store', cascade= 'all, delete-orphan', passive_deletes= True)
 
+    adresses = relationship('Address', 
+                            primaryjoin= lambda: (foreign(Address.id) == remote(Store.id) & (Address.owner_type == "Store")),
+                            back_populates= "store",
+                            cascade= 'all, delete-orphan',
+                            passive_deletes= True)
     
+
     
     
