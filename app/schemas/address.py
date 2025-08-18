@@ -12,14 +12,14 @@ class BaseAddress(BaseModel):
     city : Annotated[str, Field(..., min_length= 3, strict= True)]
     neighbourhood: Annotated[str, Field(..., min_length= 3, strict= True)]
     street : Annotated[str, Field(..., min_length= 10, strict= True)]
-    place_number = Annotated[int, Field(..., ge=1, strict= True)]
+    place_number : Annotated[str, Field(..., strict= True)]
     
-    additional_info = Annotated[str, Field(..., strict= True)]
+    additional_info : Annotated[str, Field(..., strict= True)]
 
-    postal_code = Annotated[int, Field(..., strict= True)]
+    postal_code : Annotated[int, Field(..., strict= True)]
 
     owner_id : int
-    owner_type = Annotated[str, Field(..., strict= True)]
+    owner_type : Annotated[str, Field(..., strict= True)]
 
     class Config(BaseConfig):
         pass
@@ -30,14 +30,14 @@ class CreateAddress(BaseModel):
     city : Annotated[str, Field(..., min_length= 3, strict= True)]
     neighbourhood: Annotated[str, Field(..., min_length= 3, strict= True)]
     street : Annotated[str, Field(..., min_length= 10, strict= True)]
-    place_number = Annotated[int, Field(..., ge=1, strict= True)]
+    place_number : Annotated[str, Field(..., strict= True)]
     
-    additional_info = Annotated[str, Field(..., strict= True)]
+    additional_info : Annotated[str, Field(..., strict= True)]
 
-    postal_code = Annotated[int, Field(..., strict= True)]
+    postal_code : Annotated[int, Field(..., strict= True)]
 
     owner_id : int
-    owner_type = Annotated[str, Field(..., strict= True)]
+    owner_type : Annotated[str, Field(..., strict= True)]
 
     class Config(BaseConfig):
         pass
