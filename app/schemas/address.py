@@ -16,7 +16,7 @@ class BaseAddress(BaseModel):
     
     additional_info : Annotated[str, Field(..., strict= True)]
 
-    postal_code : Annotated[int, Field(..., strict= True)]
+    postal_code : Annotated[str, Field(..., strict= True)]
 
     owner_id : int
     owner_type : Annotated[str, Field(..., strict= True)]
@@ -34,7 +34,7 @@ class CreateAddress(BaseModel):
     
     additional_info : Annotated[str, Field(..., strict= True)]
 
-    postal_code : Annotated[int, Field(..., strict= True)]
+    postal_code : Annotated[str, Field(..., strict= True)]
 
     owner_id : int
     owner_type : Annotated[str, Field(..., strict= True)]

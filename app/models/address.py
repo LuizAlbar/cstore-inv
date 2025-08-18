@@ -3,9 +3,6 @@ from sqlalchemy.ext import associationproxy
 from typing import TYPE_CHECKING
 from app.database import Base
 
-if TYPE_CHECKING:
-    from app.models import Store
-
 class Address(Base):
 
     __tablename__ = "addresses"

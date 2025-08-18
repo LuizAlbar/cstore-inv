@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
 from typing import List, Annotated
 from .phone_number import BasePhoneNumber
+from .address import BaseAddress
 
 class BaseConfig:
     
@@ -13,6 +14,7 @@ class BaseStore(BaseModel):
     cnpj : Annotated[str, Field(..., max_length=14, strict=True)]
     email : Annotated[EmailStr, Field(..., max_length=100, strict=True)]
     phone_numbers : List[BasePhoneNumber] = []
+    addresses : List[BaseAddress] = []
 
     class Config(BaseConfig):
         pass
