@@ -9,6 +9,7 @@ class AddressService(Crud):
     model = Address
     main_field = 'postal_code'
     table_name = model.__name__
+    
 
     @classmethod
     def create(cls, db, create_schema):

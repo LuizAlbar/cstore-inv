@@ -22,7 +22,7 @@ class Store(Base):
     phone_numbers = relationship('PhoneNumber', back_populates= 'store', cascade= 'all, delete-orphan', passive_deletes= True)
 
     adresses = relationship("Address", 
-                            primaryjoin= lambda: (foreign(Address.owner_id) == Store.id & (Address.owner_type == "Store")),
+                            primaryjoin= lambda: ((foreign(Address.owner_id) == Store.id) & ((Address.owner_type == "Store"))),
                             backref= "owner",
                             cascade= 'all, delete-orphan',
                             passive_deletes= True)

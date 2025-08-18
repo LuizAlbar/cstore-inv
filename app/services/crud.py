@@ -82,11 +82,12 @@ class Crud(ABC):
             query = query.options(selectinload(getattr(cls.model, field)))
 
         obj = query.filter(cls.model.id == id).first()
+        
 
         if not obj:
             return ResponseHandler.not_found_error(cls.table_name, id)
 
         db.delete(obj)
         db.commit()
-
+        
         return ResponseHandler.delete_success(getattr(obj, cls.main_field, ""), obj.id, obj)
