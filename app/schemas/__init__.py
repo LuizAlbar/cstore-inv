@@ -1,6 +1,7 @@
 from .store import BaseStore, CreateStore, UpdateStore, ReadStore, ReadAllStores, ReadDeletedStore
 from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber, ReadAllPhoneNumber, ReadDeletedPhoneNumber
 from .address import BaseAddress, CreateAddress, ReadAddress, ReadAllAddresses, UpdateAddress, ReadDeletedAddress, DeleteAddress
+from .employee import BaseEmployee, CreateEmployee, ReadEmployee, ReadAllEmployees, UpdateEmployee, DeleteEmployee, ReadDeletedEmployee
 
 store = [
     'BaseStore',
@@ -30,4 +31,14 @@ address = [
     'DeleteAddress'
 ]
 
-__all__ = store + phone_number + address
+employee = [
+    'BaseEmployee',
+    'CreateEmployee',
+    'ReadEmployee',
+    'ReadAllEmployees',
+    'UpdateEmployee',
+    'DeleteEmployee',
+    'ReadDeletedEmployee'
+
+]
+__all__ = store + phone_number + address + employee

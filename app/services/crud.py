@@ -11,7 +11,7 @@ class Crud(ABC):
 
     @classmethod
     def create(cls, db: Session, create_schema):
-        obj = cls.model(**create_schema.model_dump(mode = 'python'))
+        obj = cls.build_object(create_schema)
 
         try:
 
@@ -91,3 +91,8 @@ class Crud(ABC):
         db.commit()
         
         return ResponseHandler.delete_success(getattr(obj, cls.main_field, ""), obj.id, obj)
+
+    @classmethod
+    def build_object(cls, create_schema):
+
+        return cls.model(**create_schema.model_dump(mode='python'))

@@ -17,6 +17,7 @@ dependencies = [
     "uvicorn>=0.35.0",
     "alembic>=1.16.4",
     "dynaconf>=3.2.11",
+    "passlib[bcrypt]>=1.7.4",
 ]
 
 [project.scripts]
