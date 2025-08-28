@@ -1,7 +1,7 @@
 from app.database import Base
-from .store import Store
-from .phone_number import PhoneNumber
-from .address import Address
-from .employee import Employee
+from .store_model import Store
+from .phone_number_model import PhoneNumber
+from .address_model import Address
+from .employee_model import Employee
 
 __all__ = ['Base','Store', 'PhoneNumber', 'Address', 'Employee']

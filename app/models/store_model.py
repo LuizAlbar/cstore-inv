@@ -2,7 +2,7 @@ from sqlalchemy import Column, String, Integer
 from sqlalchemy.orm import relationship, foreign
 from typing import List, TYPE_CHECKING
 from app.database import Base
-from app.models.address import Address
+from app.models.address_model import Address
 
 
 if TYPE_CHECKING:

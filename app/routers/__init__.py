@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-from .store import router as store_router
-from .phone_number import router as phone_number_router
-from .address import router as address_router
-from .employee import router as employee_router
+from .store_route import router as store_router
+from .phone_number_route import router as phone_number_router
+from .address_route import router as address_router
+from .employee_route import router as employee_router
 
 main_router = APIRouter()
 

@@ -48,7 +48,7 @@ class Crud(ABC):
     @classmethod
     def read_all(cls, db: Session, search = ""):
         objs = db.query(cls.model).order_by(cls.model.id.asc()).all()
-
+        
         if not objs:
             return ResponseHandler.db_not_populated_error(cls.table_name)
 
@@ -91,6 +91,17 @@ class Crud(ABC):
         db.commit()
         
         return ResponseHandler.delete_success(getattr(obj, cls.main_field, ""), obj.id, obj)
+    
+    @classmethod
+    def get_all(cls, relationship, entity, relationship_id, db: Session, search = ""):
+        """Get all objects of an specific entity that are relationated with the entity chose"""
+
+        objs = db.query(entity).filter(getattr(entity, relationship) == relationship_id).order_by(entity.id.asc()).all()
+
+        if not objs:
+            return ResponseHandler.db_not_populated_error(entity.__name__)
+
+        return ResponseHandler.get_all_success(entity.__name__, objs)        
 
     @classmethod
     def build_object(cls, create_schema):

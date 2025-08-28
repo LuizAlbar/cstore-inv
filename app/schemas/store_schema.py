@@ -1,7 +1,8 @@
 from pydantic import BaseModel, EmailStr, Field, ConfigDict
-from typing import List, Annotated
-from .phone_number import BasePhoneNumber
-from .address import BaseAddress
+from typing import List, Annotated, TYPE_CHECKING
+from .phone_number_schema import BasePhoneNumber
+from .address_schema import BaseAddress
+from .employee_schema import BaseEmployee
 
 class BaseConfig:
     
@@ -53,6 +54,22 @@ class ReadDeletedStore(BaseModel):
 
     message : str
     data : DeleteStore
+
+class ReadAllEmployeesStore(BaseModel):
+
+    message : str
+    data : List[BaseEmployee] = []
+
+    class Config(BaseConfig):
+        pass
+
+class ReadEmployeeStore(BaseModel):
+    
+    message : str
+    data : BaseEmployee
+
+    class Config(BaseConfig):
+        pass
 
 
 

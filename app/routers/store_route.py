@@ -1,7 +1,7 @@
 from fastapi import APIRouter, status, Depends, Query
 from sqlalchemy.orm import Session
 from app.database import get_db
-from app.schemas import CreateStore, ReadStore, ReadAllStores, UpdateStore, ReadDeletedStore
+from app.schemas import CreateStore, ReadStore, ReadAllStores, UpdateStore, ReadDeletedStore, ReadAllEmployeesStore
 from app.services import StoreService
 
 router = APIRouter()
@@ -32,4 +32,11 @@ async def update_store(store_id : int, updated_store : UpdateStore, db: Session 
 async def delete_store(store_id: int, db: Session = Depends(get_db)):
 
     return StoreService.delete(db, store_id)
+
+@router.get('/{store_id}/employee', status_code= status.HTTP_200_OK, response_model= ReadAllEmployeesStore)
+async def get_all_employees(store_id, db : Session = Depends(get_db), search : str | None = Query("", description= "")):
+
+    return StoreService.get_all_employee(store_id, db, search)
+
+
 

@@ -1,18 +1,19 @@
-from .store import BaseStore, CreateStore, UpdateStore, ReadStore, ReadAllStores, ReadDeletedStore
-from .phone_number import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber, ReadAllPhoneNumber, ReadDeletedPhoneNumber
-from .address import BaseAddress, CreateAddress, ReadAddress, ReadAllAddresses, UpdateAddress, ReadDeletedAddress, DeleteAddress
-from .employee import BaseEmployee, CreateEmployee, ReadEmployee, ReadAllEmployees, UpdateEmployee, DeleteEmployee, ReadDeletedEmployee
+from .store_schema import BaseStore, CreateStore, UpdateStore, ReadStore, ReadAllStores, ReadDeletedStore, ReadAllEmployeesStore
+from .phone_number_schema import BasePhoneNumber, CreatePhoneNumber, UpdatePhoneNumber, ReadPhoneNumber, ReadAllPhoneNumber, ReadDeletedPhoneNumber
+from .address_schema import BaseAddress, CreateAddress, ReadAddress, ReadAllAddresses, UpdateAddress, ReadDeletedAddress, DeleteAddress
+from .employee_schema import BaseEmployee, CreateEmployee, ReadEmployee, ReadAllEmployees, UpdateEmployee, DeleteEmployee, ReadDeletedEmployee
 
-store = [
+store_schema = [
     'BaseStore',
     'CreateStore',
     'UpdateStore',
     'ReadStore',
     'ReadAllStores',
-    'ReadDeletedStore'
+    'ReadDeletedStore',
+    'ReadAllEmployeesStore'
 ]
 
-phone_number = [
+phone_number_schema = [
     'BasePhoneNumber',
     'CreatePhoneNumber',
     'UpdatePhoneNumber',
@@ -21,7 +22,7 @@ phone_number = [
     'ReadDeletedPhoneNumber'
 ]
 
-address = [
+address_schema = [
     'BaseAddress',
     'CreateAddress',
     'ReadAddress',
@@ -31,7 +32,7 @@ address = [
     'DeleteAddress'
 ]
 
-employee = [
+employee_schema = [
     'BaseEmployee',
     'CreateEmployee',
     'ReadEmployee',
@@ -41,4 +42,4 @@ employee = [
     'ReadDeletedEmployee'
 
 ]
-__all__ = store + phone_number + address + employee
+__all__ = store_schema + phone_number_schema + address_schema + employee_schema
